@@ -2,19 +2,22 @@ Questions regarding Uploaded Image Classification:
 
 1. Did the three model architectures classify the breed of dog in Dog_01.jpg to be the same breed? If not, report the differences in the classifications.
 
-Answer: 
-
+Answer: Yes, the three model architectures classified the breed of dog in Dog_01.jpg correctly. It was a Border Collie.
 
 2. Did each of the three model architectures classify the breed of dog in Dog_01.jpg to be the same breed of dog as that model architecture classified Dog_02.jpg? If not, report the differences in the classifications.
 
-Answer: 
+Answer: No, alexnet classified different breed of dog for Dog_01.jpg and Dog_02.jpg.
 
+alexnet - Dog_01.jpg (border collie)(correct) and Dog_02,jpg (tibetan terrier, chrysanthemum dog)(incorrect)
+resnet - Dog_01.jpg (border collie)(correct) and Dog_02,jpg (border collie)(correct)
+vgg - Dog_01.jpg (border collie)(correct) and Dog_02,jpg (border collie)(correct)
 
 3. Did the three model architectures correctly classify Animal_Name_01.jpg and Object_Name_01.jpg to not be dogs? If not, report the misclassifications.
 
-Answer: 
+Answer: Yes, all the three model architectures correctly classified Polar_Bear_01.jpg and Bottle_01.jpg to not be dogs. However, Alexnet misclassified the object name for Bottle_01.jpg as a cocktail shaker.
 
 
 4. Based upon your answers for questions 1. - 3. above, select the model architecture that you feel did the best at classifying the four uploaded images. Describe why you selected that model architecture as the best on uploaded image classification.
 
-Answer:
+Answer: In this case of uploaded images, I would use ResNet. AlexNet fails to classify the horizontally flipped dog image's breed and the object image. Both ResNet and VGG have the same accuracy when tested on the uploaded images. VGG is computationally expensive as it has more parameters and FLOPs than ResNet. 
+However, when tested on the entire dataset, VGG as a higher accuracy than ResNet even if it is slower. So VGG is a better candidate for a diverse dataset.

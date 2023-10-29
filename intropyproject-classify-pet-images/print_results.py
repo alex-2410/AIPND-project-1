@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/print_results.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:
-# REVISED DATE: 
+# PROGRAMMER: Ritvika Sonawane
+# DATE CREATED: 29-Oct-2023
+# REVISED DATE: 29-Oct-2023
 # PURPOSE: Create a function print_results that prints the results statistics
 #          from the results statistics dictionary (results_stats_dic). It 
 #          should also allow the user to be able to print out cases of misclassified
@@ -62,5 +62,23 @@ def print_results(results_dic, results_stats_dic, model,
     Returns:
            None - simply printing results.
     """    
-    None
-                
+    print("\n\n** Results Summary for the {} CNN Model Architecture".format(model.upper()))
+    print("\n{:35}: {:3d}".format('Number of Images', results_stats_dic['n_images']))
+    print("\n{:35}: {:3d}".format('Number of Dog Images', results_stats_dic['n_dogs_img']))
+    print("\n{:35}: {:3d}".format('Number of "Not-a-dog" Images', results_stats_dic['n_notdogs_img']))
+
+    print("\n{:35}: {:.1f}%".format('Percentage of Correct Dogs', results_stats_dic['pct_correct_dogs']))
+    print("\n{:35}: {:.1f}%".format('Percentage of Correct Breeds', results_stats_dic['pct_correct_breed']))
+    print("\n{:35}: {:.1f}%".format('Percentage of Correct "Not-a-Dog"', results_stats_dic['pct_correct_notdogs']))
+    print("\n{:35}: {:.1f}%".format('Percentage of Matches', results_stats_dic['pct_match']))
+
+    if print_incorrect_dogs and ((results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'])!= results_stats_dic['n_images']):
+        print("\nINCORRECT Dog/NOT Dog Assignments:\n")
+        for key in results_dic:
+                if results_dic[key][3] != results_dic[key][4]:
+                      print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][0], results_dic[key][1]))
+    if print_incorrect_breed and (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']):
+        print("\nINCORRECT Dog Breed Assignment:\n")
+        for key in results_dic:
+                if results_dic[key][3] + results_dic[key][4] == 2 and results_dic[key][2] == 0:
+                      print("Real: {:>26}   Classifier: {:>30}".format(results_dic[key][0], results_dic[key][1]))
